@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, Wine, Sun, Heart, Music, MapPin, Car, Clock, Bed } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Wine, Sun, Heart, MapPin, Car, Bed, Plane } from 'lucide-react';
 
 export default function CaliforniaTrip() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -8,507 +8,735 @@ export default function CaliforniaTrip() {
   const prevSlide = () => setCurrentSlide((prev) => Math.max(prev - 1, 0));
 
   const slides = [
-    // Slide 0: Hero
+    // Slide 0: Cover
     {
-      type: 'hero',
-      bg: 'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=1200&q=80',
       content: (
-        <div className="h-full flex flex-col items-center justify-center text-center px-8 relative">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"></div>
-          <div className="relative z-10">
-            <div className="text-white/80 text-lg tracking-widest mb-4 animate-pulse">✦ A PROPOSAL FOR US ✦</div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg" style={{fontFamily: 'Georgia, serif'}}>
+        <div className="h-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col p-6">
+          <div className="flex-1 flex flex-col items-center justify-center text-center">
+            <div className="text-white/60 text-sm tracking-widest mb-4">✦ A PROPOSAL FOR US ✦</div>
+            <h1 className="text-5xl font-bold text-white mb-4" style={{fontFamily: 'Georgia, serif'}}>
               California Dreaming
             </h1>
-            <p className="text-2xl text-white/90 mb-8 max-w-xl">7 unforgettable days along the Pacific Coast</p>
-            <div className="flex gap-4 text-white/80 text-sm flex-wrap justify-center">
-              <span className="flex items-center gap-1"><Wine size={16}/> Wine Country</span>
-              <span>•</span>
-              <span className="flex items-center gap-1"><Sun size={16}/> Beaches</span>
-              <span>•</span>
+            <p className="text-xl text-white/80 mb-6">7 days along the Pacific Coast</p>
+
+            <div className="flex gap-6 text-white/70 text-sm mb-8">
+              <span className="flex items-center gap-1"><Wine size={16}/> Wine</span>
+              <span className="flex items-center gap-1"><Sun size={16}/> Beach</span>
               <span className="flex items-center gap-1"><Heart size={16}/> Romance</span>
             </div>
-            <div className="mt-8 bg-white/10 backdrop-blur rounded-xl px-6 py-3 inline-block">
-              <span className="text-amber-300 font-bold">$9,000 - $11,000 CAD</span>
-              <span className="text-white/60 text-sm ml-2">all-inclusive</span>
+
+            {/* Route Preview */}
+            <div className="bg-white/10 backdrop-blur rounded-2xl p-4 w-full max-w-sm mb-6">
+              <div className="flex items-center justify-between text-sm text-white/80 mb-3">
+                <span>SFO ✈️</span>
+                <span className="text-white/40">→→→</span>
+                <span>✈️ LAX</span>
+              </div>
+              <div className="flex justify-between text-xs text-white/60">
+                <div className="text-center">
+                  <div className="text-amber-400 font-bold">Napa</div>
+                  <div>2 nights</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-cyan-400 font-bold">Carmel</div>
+                  <div>2 nights</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-pink-400 font-bold">Santa Barbara</div>
+                  <div>2 nights</div>
+                </div>
+              </div>
             </div>
-            <div className="mt-8 text-white/60 text-sm animate-bounce">Swipe to explore →</div>
+
+            <div className="bg-amber-500/20 border border-amber-400/30 rounded-xl px-6 py-3">
+              <span className="text-amber-300 font-bold text-xl">$9,000 - $11,000 CAD</span>
+              <span className="text-white/60 text-sm ml-2">total for two</span>
+            </div>
+          </div>
+
+          <div className="text-center text-white/40 text-sm animate-bounce">
+            Swipe to see our adventure →
           </div>
         </div>
       )
     },
-    // Slide 1: Route Map & Overview
+    // Day 1: Arrival + Napa
     {
-      type: 'map',
-      bg: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
       content: (
-        <div className="h-full p-6 flex flex-col relative">
-          <div className="absolute inset-0 bg-slate-900/95"></div>
-          <div className="relative z-10 flex flex-col h-full overflow-y-auto">
-            <h2 className="text-2xl font-bold mb-1 text-amber-400 flex items-center gap-2">
-              <MapPin size={24}/> The Route
-            </h2>
-            <p className="text-slate-400 mb-4 text-sm">March 2026 • Only 3 Hotels • 800km Pacific Coast</p>
+        <div className="h-full bg-slate-900 flex flex-col">
+          {/* Photo Section */}
+          <div className="h-2/5 relative overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80"
+              alt="Bardessono Hotel"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <div className="bg-black/60 backdrop-blur-sm rounded-lg px-3 py-2 inline-block">
+                <div className="text-amber-400 text-xs font-bold">📍 Bardessono Hotel & Spa, Yountville</div>
+              </div>
+            </div>
+          </div>
 
-            {/* Visual Route */}
-            <div className="flex-1 flex flex-col gap-2">
-              {[
-                { from: '✈️ SFO Airport', to: 'Napa Valley', time: '1 hr', km: '80 km', stay: '2 nights' },
-                { from: 'Napa Valley', to: 'San Francisco', time: '1 hr', km: '65 km', stay: 'Day trip' },
-                { from: 'Napa → Carmel', to: 'Carmel-by-the-Sea', time: '2.5 hrs', km: '200 km', stay: '2 nights' },
-                { from: 'Carmel', to: 'Big Sur', time: '1 hr', km: '50 km', stay: 'Day trip' },
-                { from: 'Carmel → SB', to: 'Santa Barbara', time: '4.5 hrs', km: '350 km', stay: '2 nights' },
-                { from: 'Santa Barbara', to: 'Los Angeles', time: '2 hrs', km: '150 km', stay: 'Day trip' },
-                { from: 'Los Angeles', to: '✈️ LAX Airport', time: '30 min', km: '—', stay: 'Fly home' },
-              ].map((route, i) => (
-                <div key={i} className="flex items-center gap-2 bg-slate-800/60 rounded-lg p-2 border border-slate-700/50">
-                  <div className="flex-1">
-                    <div className="text-white text-sm font-medium">{route.from}</div>
-                    <div className="text-slate-500 text-xs">↓</div>
-                    <div className="text-amber-400 text-sm font-medium">{route.to}</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="flex items-center gap-1 text-cyan-400 text-xs">
-                      <Clock size={12}/> {route.time}
-                    </div>
-                    <div className="text-slate-500 text-xs">{route.km}</div>
-                    <div className={`text-xs font-medium ${route.stay.includes('night') ? 'text-pink-400' : 'text-slate-500'}`}>{route.stay}</div>
-                  </div>
-                </div>
-              ))}
+          {/* Content Section */}
+          <div className="flex-1 p-5 flex flex-col overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <div className="text-amber-400 text-xs font-bold tracking-wider">DAY 1</div>
+                <h2 className="text-2xl font-bold text-white">Arrival → Napa Valley</h2>
+              </div>
+              <div className="bg-amber-500/20 rounded-full px-3 py-1">
+                <span className="text-amber-400 text-xs font-bold">BASE 1 of 3</span>
+              </div>
             </div>
 
-            <div className="mt-3 bg-gradient-to-r from-pink-500/20 to-amber-500/20 rounded-xl p-3 border border-pink-400/20">
+            {/* Drive Info */}
+            <div className="flex items-center gap-4 bg-slate-800/50 rounded-lg p-3 mb-4">
+              <div className="flex items-center gap-2 text-cyan-400">
+                <Plane size={16}/>
+                <span className="text-sm">SFO</span>
+              </div>
+              <div className="flex-1 border-t border-dashed border-slate-600"></div>
+              <div className="flex items-center gap-1 text-white/60 text-xs">
+                <Car size={14}/> 1 hr
+              </div>
+              <div className="flex-1 border-t border-dashed border-slate-600"></div>
+              <div className="flex items-center gap-2 text-amber-400">
+                <MapPin size={16}/>
+                <span className="text-sm">Napa</span>
+              </div>
+            </div>
+
+            {/* Schedule */}
+            <div className="space-y-3 flex-1">
+              <div className="flex gap-3">
+                <div className="w-16 text-amber-400 text-xs font-bold">MORNING</div>
+                <div className="flex-1 text-white text-sm">
+                  ✈️ Arrive SFO, pick up convertible
+                  <div className="text-slate-400 text-xs">Ford Mustang GT • ~$180 CAD/day</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-pink-400 text-xs font-bold">AFTERNOON</div>
+                <div className="flex-1 text-white text-sm">
+                  🏨 Check into Bardessono, explore Yountville
+                  <div className="text-slate-400 text-xs">Walk main street, pop into tasting rooms</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-purple-400 text-xs font-bold">EVENING</div>
+                <div className="flex-1 text-white text-sm">
+                  🍽️ Dinner at Bottega
+                  <div className="text-slate-400 text-xs">Michael Chiarello's Italian • ~$200</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Hotel & Cost */}
+            <div className="mt-4 bg-amber-500/10 border border-amber-500/30 rounded-xl p-3">
               <div className="flex justify-between items-center">
-                <div>
-                  <div className="text-white font-bold">Only 3 Hotels!</div>
-                  <div className="text-slate-400 text-xs">No constant packing/unpacking</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-lg font-bold text-pink-400">6 nights</div>
-                  <div className="text-slate-400 text-xs">2+2+2 split</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    // Slide 2: Overview Timeline
-    {
-      type: 'overview',
-      bg: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
-      content: (
-        <div className="h-full p-6 flex flex-col relative">
-          <div className="absolute inset-0 bg-slate-900/90"></div>
-          <div className="relative z-10 flex flex-col h-full">
-            <h2 className="text-2xl font-bold mb-1 text-amber-400">The Journey</h2>
-            <p className="text-slate-400 mb-4 text-sm">3 bases, 7 days of adventure</p>
-
-            <div className="flex-1 flex flex-col justify-center gap-3">
-              {/* Hotel 1: Napa */}
-              <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/10 rounded-xl p-4 border border-amber-400/30">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center">
-                      <Wine size={20} className="text-white"/>
-                    </div>
-                    <div>
-                      <div className="font-bold text-white">Napa Valley</div>
-                      <div className="text-xs text-amber-300">Days 1-2 • Bardessono</div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-amber-400 font-bold">2 nights</div>
-                    <div className="text-xs text-slate-400">$850/nt</div>
-                  </div>
-                </div>
-                <div className="text-xs text-slate-300">Wine tastings, SF day trip, gourmet dining</div>
-              </div>
-
-              {/* Hotel 2: Carmel */}
-              <div className="bg-gradient-to-r from-cyan-500/20 to-cyan-600/10 rounded-xl p-4 border border-cyan-400/30">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center">
-                      <Heart size={20} className="text-white"/>
-                    </div>
-                    <div>
-                      <div className="font-bold text-white">Carmel-by-the-Sea</div>
-                      <div className="text-xs text-cyan-300">Days 3-4 • L'Auberge Carmel</div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-cyan-400 font-bold">2 nights</div>
-                    <div className="text-xs text-slate-400">$750/nt</div>
-                  </div>
-                </div>
-                <div className="text-xs text-slate-300">Fairytale village, Big Sur day trip, beach walks</div>
-              </div>
-
-              {/* Hotel 3: Santa Barbara */}
-              <div className="bg-gradient-to-r from-pink-500/20 to-pink-600/10 rounded-xl p-4 border border-pink-400/30">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <div className="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center">
-                      <Sun size={20} className="text-white"/>
-                    </div>
-                    <div>
-                      <div className="font-bold text-white">Santa Barbara</div>
-                      <div className="text-xs text-pink-300">Days 5-7 • Belmond El Encanto</div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-pink-400 font-bold">2 nights</div>
-                    <div className="text-xs text-slate-400">$900/nt</div>
-                  </div>
-                </div>
-                <div className="text-xs text-slate-300">Beach, wine, LA day trip, farewell dinner</div>
-              </div>
-            </div>
-
-            <div className="mt-3 text-center text-slate-500 text-xs">
-              Total hotel cost: ~$5,000 CAD for 6 nights
-            </div>
-          </div>
-        </div>
-      )
-    },
-    // Slide 3: Napa Days 1-2
-    {
-      type: 'destination',
-      bg: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1200&q=80',
-      content: (
-        <div className="h-full p-6 flex flex-col text-white relative overflow-y-auto">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/50"></div>
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="text-amber-300 text-xs tracking-widest mb-1">DAYS 1-2 • BASE 1</div>
-            <h2 className="text-3xl font-bold mb-1" style={{fontFamily: 'Georgia, serif'}}>Napa Valley</h2>
-            <div className="flex items-center gap-2 text-amber-200 text-sm mb-4">
-              <Bed size={14}/> 2 nights at Bardessono • <span className="text-amber-400">$850 CAD/nt</span>
-            </div>
-
-            <div className="flex-1 flex flex-col gap-3">
-              {/* Hotel Info */}
-              <div className="bg-black/40 backdrop-blur-md rounded-xl p-3 border border-amber-400/30">
-                <p className="text-xs text-amber-100">LEED Platinum luxury in Yountville. Private balconies, in-room fireplaces, rooftop pool. Walk to restaurants.</p>
-                <div className="text-xs text-slate-400 mt-1">Alt: Carneros Resort ($700) • Meadowood ($1,200)</div>
-              </div>
-
-              {/* Day 1 */}
-              <div className="bg-black/40 backdrop-blur-md rounded-xl p-4 border border-white/10">
-                <div className="font-bold mb-2 text-amber-400 text-sm">Day 1: Arrival</div>
-                <div className="space-y-2 text-sm">
-                  <div><span className="text-amber-400">AM:</span> Arrive SFO, pick up convertible (~$180/day)</div>
-                  <div><span className="text-pink-400">PM:</span> Drive to Napa (1hr), check in, explore Yountville</div>
-                  <div><span className="text-purple-400">EVE:</span> Dinner at Bottega (~$200 for two)</div>
-                </div>
-              </div>
-
-              {/* Day 2 */}
-              <div className="bg-black/40 backdrop-blur-md rounded-xl p-4 border border-white/10">
-                <div className="font-bold mb-2 text-amber-400 text-sm">Day 2: Wine + SF Day Trip</div>
-                <div className="space-y-2 text-sm">
-                  <div><span className="text-amber-400">AM:</span> Domaine Carneros sparkling wine (~$80)</div>
-                  <div><span className="text-pink-400">PM:</span> Drive to SF (1hr) - Golden Gate, Fisherman's Wharf, shopping</div>
-                  <div><span className="text-purple-400">EVE:</span> Return to Napa, dinner at Press (~$350)</div>
-                </div>
-              </div>
-
-              <div className="bg-amber-500/20 backdrop-blur rounded-xl p-3 border border-amber-400/30">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-bold">Days 1-2 Total</span>
-                  <span className="text-amber-400 font-bold">~$2,500 CAD</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    // Slide 4: Carmel Days 3-4
-    {
-      type: 'destination',
-      bg: 'https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=1200&q=80',
-      content: (
-        <div className="h-full p-6 flex flex-col text-white relative overflow-y-auto">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-cyan-900/30"></div>
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="text-cyan-300 text-xs tracking-widest mb-1">DAYS 3-4 • BASE 2</div>
-            <h2 className="text-3xl font-bold mb-1" style={{fontFamily: 'Georgia, serif'}}>Carmel-by-the-Sea</h2>
-            <div className="flex items-center gap-2 text-cyan-200 text-sm mb-4">
-              <Bed size={14}/> 2 nights at L'Auberge • <span className="text-cyan-400">$750 CAD/nt</span>
-            </div>
-
-            <div className="flex-1 flex flex-col gap-3">
-              {/* Hotel Info */}
-              <div className="bg-black/40 backdrop-blur-md rounded-xl p-3 border border-cyan-400/30">
-                <p className="text-xs text-cyan-100">Relais & Châteaux boutique hotel. 20 rooms, wine cellar, Michelin-starred Aubergine on-site.</p>
-                <div className="text-xs text-slate-400 mt-1">Alt: Cypress Inn ($400) • La Playa ($500)</div>
-              </div>
-
-              {/* Day 3 */}
-              <div className="bg-black/40 backdrop-blur-md rounded-xl p-4 border border-white/10">
-                <div className="font-bold mb-2 text-cyan-400 text-sm">Day 3: Scenic Drive + Village</div>
-                <div className="space-y-2 text-sm">
-                  <div><span className="text-amber-400">AM:</span> Drive Napa → Carmel via coast (2.5hrs, stunning!)</div>
-                  <div><span className="text-pink-400">PM:</span> Beach walk, art galleries, wine bars on Ocean Ave</div>
-                  <div><span className="text-purple-400">EVE:</span> Aubergine tasting menu (~$500 for two)</div>
-                </div>
-              </div>
-
-              {/* Day 4 */}
-              <div className="bg-black/40 backdrop-blur-md rounded-xl p-4 border border-white/10">
-                <div className="font-bold mb-2 text-cyan-400 text-sm">Day 4: Big Sur Day Trip</div>
-                <div className="space-y-2 text-sm">
-                  <div><span className="text-amber-400">AM:</span> Drive to Big Sur - Bixby Bridge photos 📸</div>
-                  <div><span className="text-pink-400">NOON:</span> McWay Falls, lunch at Nepenthe (~$100)</div>
-                  <div><span className="text-purple-400">PM:</span> Return to Carmel, sunset beach walk</div>
-                  <div><span className="text-purple-400">EVE:</span> Casual dinner at La Bicyclette (~$150)</div>
-                </div>
-              </div>
-
-              <div className="bg-cyan-500/20 backdrop-blur rounded-xl p-3 border border-cyan-400/30">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-bold">Days 3-4 Total</span>
-                  <span className="text-cyan-400 font-bold">~$2,400 CAD</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    // Slide 5: Big Sur highlights
-    {
-      type: 'destination',
-      bg: 'https://images.unsplash.com/photo-1558128364-8c5eedfeab08?w=1200&q=80',
-      content: (
-        <div className="h-full p-6 flex flex-col text-white relative overflow-y-auto">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-blue-900/30"></div>
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="text-blue-300 text-xs tracking-widest mb-1">DAY 4 HIGHLIGHT</div>
-            <h2 className="text-3xl font-bold mb-1" style={{fontFamily: 'Georgia, serif'}}>Big Sur</h2>
-            <div className="flex items-center gap-2 text-blue-200 text-sm mb-4">
-              <Car size={14}/> Day trip from Carmel • 1 hr each way
-            </div>
-
-            <div className="flex-1 flex flex-col gap-3">
-              <div className="bg-black/50 backdrop-blur-md rounded-2xl p-4 border border-white/10 border-l-4 border-l-cyan-400">
-                <div className="font-bold mb-1">📸 Bixby Creek Bridge</div>
-                <p className="text-sm text-blue-100">THE iconic California photo. 714-foot span over the canyon. Pull off just before for best shots.</p>
-              </div>
-
-              <div className="bg-black/50 backdrop-blur-md rounded-2xl p-4 border border-white/10 border-l-4 border-l-pink-400">
-                <div className="font-bold mb-1">🌊 McWay Falls</div>
-                <p className="text-sm text-blue-100">80-foot waterfall onto pristine beach. 5-minute walk from parking. Zero hiking!</p>
-              </div>
-
-              <div className="bg-black/50 backdrop-blur-md rounded-2xl p-4 border border-white/10 border-l-4 border-l-amber-400">
-                <div className="font-bold mb-1">🍔 Nepenthe Restaurant</div>
-                <p className="text-sm text-blue-100">Legendary 800-foot ocean views. Get the Ambrosiaburger. ~$100 CAD for two.</p>
-              </div>
-
-              <div className="bg-gradient-to-r from-blue-500/30 to-purple-500/30 backdrop-blur rounded-2xl p-4 flex items-center gap-4 border border-white/10">
-                <div className="text-3xl">🚗</div>
-                <div>
-                  <div className="font-bold">Convertible Weather</div>
-                  <div className="text-sm text-blue-200">Top down, PCH cruising, back to Carmel by sunset</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    // Slide 6: Santa Barbara Days 5-7
-    {
-      type: 'destination',
-      bg: 'https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?w=1200&q=80',
-      content: (
-        <div className="h-full p-6 flex flex-col text-white relative overflow-y-auto">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-amber-900/30"></div>
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="text-pink-300 text-xs tracking-widest mb-1">DAYS 5-7 • BASE 3</div>
-            <h2 className="text-3xl font-bold mb-1" style={{fontFamily: 'Georgia, serif'}}>Santa Barbara</h2>
-            <div className="flex items-center gap-2 text-pink-200 text-sm mb-4">
-              <Bed size={14}/> 2 nights at Belmond El Encanto • <span className="text-pink-400">$900 CAD/nt</span>
-            </div>
-
-            <div className="flex-1 flex flex-col gap-3">
-              {/* Hotel Info */}
-              <div className="bg-black/40 backdrop-blur-md rounded-xl p-3 border border-pink-400/30">
-                <p className="text-xs text-pink-100">Hilltop sanctuary with Pacific views. Bungalow suites, infinity pool, award-winning dining.</p>
-                <div className="text-xs text-slate-400 mt-1">Alt: Kimpton Canary ($450) • Hotel Californian ($500)</div>
-              </div>
-
-              {/* Day 5 */}
-              <div className="bg-black/40 backdrop-blur-md rounded-xl p-4 border border-white/10">
-                <div className="font-bold mb-2 text-pink-400 text-sm">Day 5: Arrival + Beach</div>
-                <div className="space-y-2 text-sm">
-                  <div><span className="text-amber-400">AM:</span> Scenic drive Carmel → Santa Barbara (4.5hrs)</div>
-                  <div><span className="text-pink-400">PM:</span> Check in, Butterfly Beach in Montecito</div>
-                  <div><span className="text-purple-400">EVE:</span> Dinner at The Lark (~$300 for two)</div>
-                </div>
-              </div>
-
-              {/* Day 6 */}
-              <div className="bg-black/40 backdrop-blur-md rounded-xl p-4 border border-white/10">
-                <div className="font-bold mb-2 text-pink-400 text-sm">Day 6: Wine + Relaxation</div>
-                <div className="space-y-2 text-sm">
-                  <div><span className="text-amber-400">AM:</span> Funk Zone wine tasting (~$60)</div>
-                  <div><span className="text-pink-400">PM:</span> Pool time, spa, or Santa Ynez Valley trip</div>
-                  <div><span className="text-purple-400">EVE:</span> Sunset drinks, dinner at Loquita (~$250)</div>
-                </div>
-              </div>
-
-              <div className="bg-pink-500/20 backdrop-blur rounded-xl p-3 border border-pink-400/30">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-bold">Days 5-6 Total</span>
-                  <span className="text-pink-400 font-bold">~$2,600 CAD</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    // Slide 7: LA Day Trip + Departure
-    {
-      type: 'destination',
-      bg: 'https://images.unsplash.com/photo-1515896769750-31548aa180ed?w=1200&q=80',
-      content: (
-        <div className="h-full p-6 flex flex-col text-white relative overflow-y-auto">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-purple-900/60 to-pink-900/40"></div>
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="text-purple-300 text-xs tracking-widest mb-1">DAY 7 • GRAND FINALE</div>
-            <h2 className="text-3xl font-bold mb-1" style={{fontFamily: 'Georgia, serif'}}>Los Angeles</h2>
-            <div className="flex items-center gap-2 text-purple-200 text-sm mb-4">
-              <Car size={14}/> Day trip from SB (2hrs) • Fly out from LAX
-            </div>
-
-            <div className="flex-1 flex flex-col gap-3">
-              {/* No hotel needed */}
-              <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur rounded-xl p-3 border border-purple-400/30">
                 <div className="flex items-center gap-2">
-                  <Music size={18} className="text-purple-400"/>
+                  <Bed size={16} className="text-amber-400"/>
                   <div>
-                    <span className="font-bold">No hotel needed!</span>
-                    <p className="text-xs text-purple-200">Day trip to LA, fly home that evening</p>
+                    <div className="text-white text-sm font-bold">Bardessono</div>
+                    <div className="text-slate-400 text-xs">Night 1 of 2 • $850 CAD/night</div>
                   </div>
                 </div>
-              </div>
-
-              {/* Day 7 Schedule */}
-              <div className="bg-black/40 backdrop-blur-md rounded-xl p-4 border border-white/10">
-                <div className="font-bold mb-2 text-purple-400 text-sm">Day 7: LA Highlights + Departure</div>
-                <div className="space-y-2 text-sm">
-                  <div><span className="text-amber-400">8 AM:</span> Check out SB, drive to LA (2hrs)</div>
-                  <div><span className="text-amber-400">10:30:</span> Rodeo Drive shopping/browsing 🛍️</div>
-                  <div><span className="text-pink-400">12:30:</span> Lunch in Beverly Hills (~$150)</div>
-                  <div><span className="text-pink-400">2 PM:</span> Hollywood Sign photo from Griffith Observatory</div>
-                  <div><span className="text-purple-400">4 PM:</span> Santa Monica Pier, beach walk</div>
-                  <div><span className="text-purple-400">6 PM:</span> Early dinner at Catch LA rooftop (~$400)</div>
-                  <div><span className="text-slate-400">8 PM:</span> Drop car at LAX, fly home ✈️</div>
-                </div>
-              </div>
-
-              <div className="bg-purple-500/20 backdrop-blur rounded-xl p-3 border border-purple-400/30">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-bold">Day 7 Total</span>
-                  <span className="text-purple-400 font-bold">~$600 CAD</span>
-                </div>
-                <div className="text-xs text-slate-400">Meals, gas (no hotel!)</div>
+                <div className="text-amber-400 font-bold">~$1,200</div>
               </div>
             </div>
           </div>
         </div>
       )
     },
-    // Slide 8: Budget Breakdown
+    // Day 2: Napa Wine + SF Day Trip
     {
-      type: 'budget',
-      bg: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80',
       content: (
-        <div className="h-full p-6 flex flex-col text-white relative overflow-y-auto">
-          <div className="absolute inset-0 bg-slate-900/95"></div>
-          <div className="relative z-10 flex flex-col h-full">
-            <h2 className="text-2xl font-bold mb-4 text-center text-amber-400" style={{fontFamily: 'Georgia, serif'}}>
-              💰 Budget Breakdown (CAD)
-            </h2>
+        <div className="h-full bg-slate-900 flex flex-col">
+          {/* Photo Grid */}
+          <div className="h-2/5 flex gap-1 p-1">
+            <div className="flex-1 relative overflow-hidden rounded-lg">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
+                alt="Domaine Carneros"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm rounded px-2 py-1">
+                <div className="text-amber-400 text-xs">🍾 Domaine Carneros</div>
+              </div>
+            </div>
+            <div className="flex-1 relative overflow-hidden rounded-lg">
+              <img
+                src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&q=80"
+                alt="Golden Gate Bridge"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm rounded px-2 py-1">
+                <div className="text-orange-400 text-xs">🌉 Golden Gate</div>
+              </div>
+            </div>
+          </div>
 
-            <div className="flex-1 flex flex-col gap-2">
-              {[
-                { item: '✈️ Flights (YYZ→SFO, LAX→YYZ)', cost: '$1,200 - $1,800', note: 'per person, book early' },
-                { item: '🚗 Convertible Rental (7 days)', cost: '$1,200 - $1,500', note: 'Mustang GT or similar' },
-                { item: '🏨 Hotels (6 nights, 3 hotels)', cost: '$5,000', note: 'Bardessono + L\'Auberge + Belmond' },
-                { item: '🍽️ Dining & Wine', cost: '$2,000 - $2,500', note: 'Incl. tastings & nice dinners' },
-                { item: '⛽ Gas & Parking', cost: '$300 - $400', note: '~900km total' },
-                { item: '🎭 Activities', cost: '$300 - $500', note: 'Tours, experiences' },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center justify-between bg-slate-800/70 rounded-lg p-3 border border-slate-700">
-                  <div className="flex-1">
-                    <div className="font-medium text-sm">{item.item}</div>
-                    <div className="text-xs text-slate-400">{item.note}</div>
-                  </div>
-                  <div className="text-amber-400 font-bold text-sm">{item.cost}</div>
-                </div>
-              ))}
+          {/* Content */}
+          <div className="flex-1 p-5 flex flex-col overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <div className="text-amber-400 text-xs font-bold tracking-wider">DAY 2</div>
+                <h2 className="text-2xl font-bold text-white">Wine + SF Day Trip</h2>
+              </div>
+              <div className="flex items-center gap-1 text-slate-400 text-xs">
+                <Car size={14}/> SF is 1hr from Napa
+              </div>
             </div>
 
-            <div className="mt-4 bg-gradient-to-r from-amber-500/30 to-pink-500/30 rounded-xl p-4 border border-amber-400/30">
+            {/* Schedule */}
+            <div className="space-y-3 flex-1">
+              <div className="flex gap-3">
+                <div className="w-16 text-amber-400 text-xs font-bold">9:00 AM</div>
+                <div className="flex-1 text-white text-sm">
+                  🥐 Bouchon Bakery breakfast
+                  <div className="text-slate-400 text-xs">Thomas Keller's pastries • ~$50</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-amber-400 text-xs font-bold">10:30 AM</div>
+                <div className="flex-1 text-white text-sm">
+                  🍾 Domaine Carneros tasting
+                  <div className="text-slate-400 text-xs">Sparkling wine on château terrace • ~$80</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-pink-400 text-xs font-bold">1:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🚗 Drive to San Francisco
+                  <div className="text-slate-400 text-xs">Golden Gate, Fisherman's Wharf, Union Square</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-purple-400 text-xs font-bold">7:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🍽️ Return to Napa, dinner at Press
+                  <div className="text-slate-400 text-xs">Steakhouse with 1,000+ wine list • ~$350</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Cost Summary */}
+            <div className="mt-4 bg-amber-500/10 border border-amber-500/30 rounded-xl p-3">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <Bed size={16} className="text-amber-400"/>
+                  <div>
+                    <div className="text-white text-sm font-bold">Bardessono</div>
+                    <div className="text-slate-400 text-xs">Night 2 of 2</div>
+                  </div>
+                </div>
+                <div className="text-amber-400 font-bold">~$1,400</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    // Day 3: Drive to Carmel
+    {
+      content: (
+        <div className="h-full bg-slate-900 flex flex-col">
+          {/* Photo Section */}
+          <div className="h-2/5 relative overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1610312278520-bcc893a3ff1d?w=800&q=80"
+              alt="Carmel-by-the-Sea"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <div className="bg-black/60 backdrop-blur-sm rounded-lg px-3 py-2 inline-block">
+                <div className="text-cyan-400 text-xs font-bold">📍 L'Auberge Carmel, Ocean Avenue</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 p-5 flex flex-col overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <div className="text-cyan-400 text-xs font-bold tracking-wider">DAY 3</div>
+                <h2 className="text-2xl font-bold text-white">Napa → Carmel</h2>
+              </div>
+              <div className="bg-cyan-500/20 rounded-full px-3 py-1">
+                <span className="text-cyan-400 text-xs font-bold">BASE 2 of 3</span>
+              </div>
+            </div>
+
+            {/* Drive Info */}
+            <div className="flex items-center gap-4 bg-slate-800/50 rounded-lg p-3 mb-4">
+              <div className="flex items-center gap-2 text-amber-400">
+                <MapPin size={16}/>
+                <span className="text-sm">Napa</span>
+              </div>
+              <div className="flex-1 border-t border-dashed border-slate-600"></div>
+              <div className="flex items-center gap-1 text-white/60 text-xs">
+                <Car size={14}/> 2.5 hrs scenic
+              </div>
+              <div className="flex-1 border-t border-dashed border-slate-600"></div>
+              <div className="flex items-center gap-2 text-cyan-400">
+                <MapPin size={16}/>
+                <span className="text-sm">Carmel</span>
+              </div>
+            </div>
+
+            {/* Schedule */}
+            <div className="space-y-3 flex-1">
+              <div className="flex gap-3">
+                <div className="w-16 text-amber-400 text-xs font-bold">MORNING</div>
+                <div className="flex-1 text-white text-sm">
+                  🚗 Scenic coastal drive
+                  <div className="text-slate-400 text-xs">Via Half Moon Bay, stop at Pigeon Point Lighthouse</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-pink-400 text-xs font-bold">1:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🏖️ Arrive Carmel, beach walk
+                  <div className="text-slate-400 text-xs">White sand, stunning cliffs, no crowds</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-pink-400 text-xs font-bold">3:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🎨 Explore Ocean Avenue
+                  <div className="text-slate-400 text-xs">Art galleries, wine bars, fairytale cottages</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-purple-400 text-xs font-bold">7:30 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🍽️ Aubergine (Michelin ⭐)
+                  <div className="text-slate-400 text-xs">Tasting menu at the hotel • ~$500</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Hotel & Cost */}
+            <div className="mt-4 bg-cyan-500/10 border border-cyan-500/30 rounded-xl p-3">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <Bed size={16} className="text-cyan-400"/>
+                  <div>
+                    <div className="text-white text-sm font-bold">L'Auberge Carmel</div>
+                    <div className="text-slate-400 text-xs">Night 1 of 2 • $750 CAD/night</div>
+                  </div>
+                </div>
+                <div className="text-cyan-400 font-bold">~$1,300</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    // Day 4: Big Sur Day Trip
+    {
+      content: (
+        <div className="h-full bg-slate-900 flex flex-col">
+          {/* Photo Grid */}
+          <div className="h-2/5 flex gap-1 p-1">
+            <div className="flex-1 relative overflow-hidden rounded-lg">
+              <img
+                src="https://images.unsplash.com/photo-1609942072337-c3370f17cfc2?w=600&q=80"
+                alt="Bixby Bridge"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm rounded px-2 py-1">
+                <div className="text-blue-400 text-xs">📸 Bixby Bridge</div>
+              </div>
+            </div>
+            <div className="flex-1 relative overflow-hidden rounded-lg">
+              <img
+                src="https://images.unsplash.com/photo-1571687949921-1306bfb24b72?w=600&q=80"
+                alt="McWay Falls"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm rounded px-2 py-1">
+                <div className="text-cyan-400 text-xs">🌊 McWay Falls</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 p-5 flex flex-col overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <div className="text-blue-400 text-xs font-bold tracking-wider">DAY 4</div>
+                <h2 className="text-2xl font-bold text-white">Big Sur Day Trip</h2>
+              </div>
+              <div className="flex items-center gap-1 text-slate-400 text-xs">
+                <Car size={14}/> 1hr each way from Carmel
+              </div>
+            </div>
+
+            {/* Schedule */}
+            <div className="space-y-3 flex-1">
+              <div className="flex gap-3">
+                <div className="w-16 text-amber-400 text-xs font-bold">8:00 AM</div>
+                <div className="flex-1 text-white text-sm">
+                  ☕ Coffee at Carmel Belle, hit the road
+                  <div className="text-slate-400 text-xs">Top down, camera ready</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-amber-400 text-xs font-bold">9:00 AM</div>
+                <div className="flex-1 text-white text-sm">
+                  📸 Bixby Creek Bridge
+                  <div className="text-slate-400 text-xs">THE iconic photo • pull off before bridge</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-pink-400 text-xs font-bold">10:30 AM</div>
+                <div className="flex-1 text-white text-sm">
+                  🌊 McWay Falls overlook
+                  <div className="text-slate-400 text-xs">80ft waterfall onto beach • 5-min walk</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-pink-400 text-xs font-bold">12:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🍔 Lunch at Nepenthe
+                  <div className="text-slate-400 text-xs">800-ft views, famous Ambrosiaburger • ~$100</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-purple-400 text-xs font-bold">EVENING</div>
+                <div className="flex-1 text-white text-sm">
+                  🌅 Return to Carmel, sunset beach walk
+                  <div className="text-slate-400 text-xs">Casual dinner at La Bicyclette • ~$150</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Hotel & Cost */}
+            <div className="mt-4 bg-cyan-500/10 border border-cyan-500/30 rounded-xl p-3">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <Bed size={16} className="text-cyan-400"/>
+                  <div>
+                    <div className="text-white text-sm font-bold">L'Auberge Carmel</div>
+                    <div className="text-slate-400 text-xs">Night 2 of 2</div>
+                  </div>
+                </div>
+                <div className="text-cyan-400 font-bold">~$1,100</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    // Day 5: Drive to Santa Barbara
+    {
+      content: (
+        <div className="h-full bg-slate-900 flex flex-col">
+          {/* Photo Section */}
+          <div className="h-2/5 relative overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80"
+              alt="Belmond El Encanto"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4">
+              <div className="bg-black/60 backdrop-blur-sm rounded-lg px-3 py-2 inline-block">
+                <div className="text-pink-400 text-xs font-bold">📍 Belmond El Encanto, Santa Barbara</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 p-5 flex flex-col overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <div className="text-pink-400 text-xs font-bold tracking-wider">DAY 5</div>
+                <h2 className="text-2xl font-bold text-white">Carmel → Santa Barbara</h2>
+              </div>
+              <div className="bg-pink-500/20 rounded-full px-3 py-1">
+                <span className="text-pink-400 text-xs font-bold">BASE 3 of 3</span>
+              </div>
+            </div>
+
+            {/* Drive Info */}
+            <div className="flex items-center gap-4 bg-slate-800/50 rounded-lg p-3 mb-4">
+              <div className="flex items-center gap-2 text-cyan-400">
+                <MapPin size={16}/>
+                <span className="text-sm">Carmel</span>
+              </div>
+              <div className="flex-1 border-t border-dashed border-slate-600"></div>
+              <div className="flex items-center gap-1 text-white/60 text-xs">
+                <Car size={14}/> 4.5 hrs coastal
+              </div>
+              <div className="flex-1 border-t border-dashed border-slate-600"></div>
+              <div className="flex items-center gap-2 text-pink-400">
+                <MapPin size={16}/>
+                <span className="text-sm">Santa Barbara</span>
+              </div>
+            </div>
+
+            {/* Schedule */}
+            <div className="space-y-3 flex-1">
+              <div className="flex gap-3">
+                <div className="w-16 text-amber-400 text-xs font-bold">MORNING</div>
+                <div className="flex-1 text-white text-sm">
+                  🚗 Scenic drive south on Highway 1
+                  <div className="text-slate-400 text-xs">Dramatic coastline, stop for photos</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-pink-400 text-xs font-bold">2:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🏨 Arrive Santa Barbara, check in
+                  <div className="text-slate-400 text-xs">Hilltop bungalow with Pacific views</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-pink-400 text-xs font-bold">4:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🏖️ Butterfly Beach, Montecito
+                  <div className="text-slate-400 text-xs">Gorgeous, uncrowded, celeb-spotting</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-purple-400 text-xs font-bold">7:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🍽️ Dinner at The Lark
+                  <div className="text-slate-400 text-xs">Best restaurant in SB • ~$300</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Hotel & Cost */}
+            <div className="mt-4 bg-pink-500/10 border border-pink-500/30 rounded-xl p-3">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <Bed size={16} className="text-pink-400"/>
+                  <div>
+                    <div className="text-white text-sm font-bold">Belmond El Encanto</div>
+                    <div className="text-slate-400 text-xs">Night 1 of 2 • $900 CAD/night</div>
+                  </div>
+                </div>
+                <div className="text-pink-400 font-bold">~$1,300</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    // Day 6: Santa Barbara
+    {
+      content: (
+        <div className="h-full bg-slate-900 flex flex-col">
+          {/* Photo Grid */}
+          <div className="h-2/5 flex gap-1 p-1">
+            <div className="flex-1 relative overflow-hidden rounded-lg">
+              <img
+                src="https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?w=600&q=80"
+                alt="Santa Barbara Beach"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm rounded px-2 py-1">
+                <div className="text-pink-400 text-xs">🏖️ American Riviera</div>
+              </div>
+            </div>
+            <div className="flex-1 relative overflow-hidden rounded-lg">
+              <img
+                src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600&q=80"
+                alt="Funk Zone Wine"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm rounded px-2 py-1">
+                <div className="text-amber-400 text-xs">🍷 Funk Zone</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 p-5 flex flex-col overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <div className="text-pink-400 text-xs font-bold tracking-wider">DAY 6</div>
+                <h2 className="text-2xl font-bold text-white">Beach + Wine Day</h2>
+              </div>
+              <div className="flex items-center gap-1 text-slate-400 text-xs">
+                <Sun size={14}/> Relaxation day
+              </div>
+            </div>
+
+            {/* Schedule */}
+            <div className="space-y-3 flex-1">
+              <div className="flex gap-3">
+                <div className="w-16 text-amber-400 text-xs font-bold">MORNING</div>
+                <div className="flex-1 text-white text-sm">
+                  🏖️ Beach time at Butterfly Beach
+                  <div className="text-slate-400 text-xs">Coffee at Lucky's, oceanfront lounging</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-amber-400 text-xs font-bold">11:00 AM</div>
+                <div className="flex-1 text-white text-sm">
+                  🍷 Funk Zone wine tasting
+                  <div className="text-slate-400 text-xs">Urban tasting rooms - Riverbench, Carr • ~$60</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-pink-400 text-xs font-bold">AFTERNOON</div>
+                <div className="flex-1 text-white text-sm">
+                  🌊 Pool time or spa at El Encanto
+                  <div className="text-slate-400 text-xs">Or optional: Santa Ynez Valley (Sideways country!)</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-purple-400 text-xs font-bold">7:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🍽️ Sunset drinks + dinner at Loquita
+                  <div className="text-slate-400 text-xs">Spanish tapas, great vibe • ~$250</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Hotel & Cost */}
+            <div className="mt-4 bg-pink-500/10 border border-pink-500/30 rounded-xl p-3">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <Bed size={16} className="text-pink-400"/>
+                  <div>
+                    <div className="text-white text-sm font-bold">Belmond El Encanto</div>
+                    <div className="text-slate-400 text-xs">Night 2 of 2</div>
+                  </div>
+                </div>
+                <div className="text-pink-400 font-bold">~$1,300</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    // Day 7: LA + Departure
+    {
+      content: (
+        <div className="h-full bg-slate-900 flex flex-col">
+          {/* Photo Grid */}
+          <div className="h-2/5 flex gap-1 p-1">
+            <div className="flex-1 relative overflow-hidden rounded-lg">
+              <img
+                src="https://images.unsplash.com/photo-1580655653885-65763b2597d0?w=600&q=80"
+                alt="Rodeo Drive"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm rounded px-2 py-1">
+                <div className="text-purple-400 text-xs">🛍️ Rodeo Drive</div>
+              </div>
+            </div>
+            <div className="flex-1 relative overflow-hidden rounded-lg">
+              <img
+                src="https://images.unsplash.com/photo-1534190239940-9ba8944ea261?w=600&q=80"
+                alt="Santa Monica"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm rounded px-2 py-1">
+                <div className="text-cyan-400 text-xs">🎡 Santa Monica</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 p-5 flex flex-col overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <div className="text-purple-400 text-xs font-bold tracking-wider">DAY 7</div>
+                <h2 className="text-2xl font-bold text-white">LA Day Trip → Home</h2>
+              </div>
+              <div className="flex items-center gap-1 text-slate-400 text-xs">
+                <Plane size={14}/> Fly out from LAX
+              </div>
+            </div>
+
+            {/* Drive Info */}
+            <div className="flex items-center gap-4 bg-slate-800/50 rounded-lg p-3 mb-4">
+              <div className="flex items-center gap-2 text-pink-400">
+                <MapPin size={16}/>
+                <span className="text-sm">SB</span>
+              </div>
+              <div className="flex-1 border-t border-dashed border-slate-600"></div>
+              <div className="flex items-center gap-1 text-white/60 text-xs">
+                <Car size={14}/> 2 hrs
+              </div>
+              <div className="flex-1 border-t border-dashed border-slate-600"></div>
+              <div className="flex items-center gap-2 text-purple-400">
+                <MapPin size={16}/>
+                <span className="text-sm">LA</span>
+              </div>
+              <div className="flex-1 border-t border-dashed border-slate-600"></div>
+              <div className="flex items-center gap-2 text-cyan-400">
+                <Plane size={16}/>
+                <span className="text-sm">LAX</span>
+              </div>
+            </div>
+
+            {/* Schedule */}
+            <div className="space-y-3 flex-1">
+              <div className="flex gap-3">
+                <div className="w-16 text-amber-400 text-xs font-bold">8:00 AM</div>
+                <div className="flex-1 text-white text-sm">
+                  🚗 Check out, drive to LA
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-amber-400 text-xs font-bold">10:30 AM</div>
+                <div className="flex-1 text-white text-sm">
+                  🛍️ Rodeo Drive, Beverly Hills
+                  <div className="text-slate-400 text-xs">Gucci, Louis Vuitton window shopping</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-pink-400 text-xs font-bold">12:30 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🍽️ Lunch in Beverly Hills • ~$150
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-pink-400 text-xs font-bold">2:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  📸 Hollywood Sign from Griffith Observatory
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-purple-400 text-xs font-bold">4:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🎡 Santa Monica Pier, beach walk
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-purple-400 text-xs font-bold">6:00 PM</div>
+                <div className="flex-1 text-white text-sm">
+                  🥂 Farewell dinner at Catch LA
+                  <div className="text-slate-400 text-xs">Rooftop sunset views • ~$400</div>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-16 text-slate-500 text-xs font-bold">8:30 PM</div>
+                <div className="flex-1 text-slate-400 text-sm">
+                  ✈️ Drop car at LAX, fly home
+                </div>
+              </div>
+            </div>
+
+            {/* Cost Summary */}
+            <div className="mt-4 bg-purple-500/10 border border-purple-500/30 rounded-xl p-3">
               <div className="flex justify-between items-center">
                 <div>
-                  <div className="font-bold text-lg">Total Estimated</div>
-                  <div className="text-xs text-slate-400">For two people, all-inclusive</div>
+                  <div className="text-white text-sm font-bold">Day 7 Total</div>
+                  <div className="text-slate-400 text-xs">No hotel (flying home!)</div>
                 </div>
-                <div className="text-right">
-                  <div className="text-3xl font-bold text-amber-400">$9,000 - $11,000</div>
-                  <div className="text-xs text-slate-400">CAD</div>
-                </div>
+                <div className="text-purple-400 font-bold">~$600</div>
               </div>
-            </div>
-
-            <div className="mt-3 text-center text-slate-500 text-xs">
-              💡 Only 3 hotel check-ins = less hassle, more relaxation
-            </div>
-          </div>
-        </div>
-      )
-    },
-    // Slide 9: CTA
-    {
-      type: 'cta',
-      bg: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=1200&q=80',
-      content: (
-        <div className="h-full p-6 flex flex-col text-white items-center justify-center text-center relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-pink-600/80 via-purple-700/80 to-indigo-800/80"></div>
-          <div className="relative z-10">
-            <div className="text-5xl mb-6">💕</div>
-            <h2 className="text-3xl font-bold mb-4" style={{fontFamily: 'Georgia, serif'}}>
-              Let's Do This
-            </h2>
-            <p className="text-purple-200 mb-6 max-w-sm text-sm">
-              7 days of wine, beaches, incredible food, and the world's most beautiful coastal drive. Just us.
-            </p>
-
-            <div className="bg-white/20 backdrop-blur-md rounded-2xl p-5 mb-6 w-full max-w-sm border border-white/20">
-              <div className="text-xs text-purple-200 mb-1">March 2026</div>
-              <div className="text-3xl font-bold mb-2">$9,000 - $11,000 CAD</div>
-              <div className="text-xs text-purple-200">
-                All-inclusive for two
-              </div>
-            </div>
-
-            <div className="space-y-2 text-sm text-purple-200 mb-6">
-              <div>✓ Only 3 hotels (2 nights each)</div>
-              <div>✓ 895km scenic coastal drive</div>
-              <div>✓ World-class wine & dining</div>
-              <div>✓ Zero hiking required 😉</div>
-            </div>
-
-            <div className="text-2xl animate-pulse">
-              What do you say? ✨
             </div>
           </div>
         </div>
@@ -525,15 +753,7 @@ export default function CaliforniaTrip() {
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {slides.map((slide, index) => (
-            <div
-              key={index}
-              className="w-full h-full flex-shrink-0"
-              style={slide.bg ? {
-                backgroundImage: `url(${slide.bg})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              } : {}}
-            >
+            <div key={index} className="w-full h-full flex-shrink-0">
               {slide.content}
             </div>
           ))}
@@ -541,7 +761,7 @@ export default function CaliforniaTrip() {
       </div>
 
       {/* Navigation */}
-      <div className="bg-slate-900/95 backdrop-blur px-4 py-3 flex items-center justify-between border-t border-slate-800">
+      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between border-t border-slate-800">
         <button
           onClick={prevSlide}
           disabled={currentSlide === 0}
@@ -550,16 +770,24 @@ export default function CaliforniaTrip() {
           <ChevronLeft size={24}/>
         </button>
 
-        {/* Slide counter */}
-        <div className="flex items-center gap-3">
-          <span className="text-slate-400 text-sm">{currentSlide + 1} / {slides.length}</span>
-          <div className="flex gap-1">
+        {/* Slide indicator */}
+        <div className="flex items-center gap-2">
+          {currentSlide === 0 ? (
+            <span className="text-white/60 text-sm">Cover</span>
+          ) : (
+            <span className="text-white/60 text-sm">Day {currentSlide} of 7</span>
+          )}
+          <div className="flex gap-1 ml-2">
             {slides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrentSlide(i)}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === currentSlide ? 'bg-amber-400 w-4' : 'bg-slate-600 hover:bg-slate-500 w-1.5'
+                className={`h-2 rounded-full transition-all ${
+                  i === currentSlide
+                    ? 'bg-amber-400 w-4'
+                    : i === 0
+                      ? 'bg-purple-500 w-2'
+                      : 'bg-slate-600 hover:bg-slate-500 w-2'
                 }`}
               />
             ))}
